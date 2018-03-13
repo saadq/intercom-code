@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "intercom-code",
+  "version": "0.1.0",
+  "content_scripts": [
+    {
+      "matches": ["http://app.intercom.io/*", "https://app.intercom.io/*"],
+      "js": ["./assets/fontawesome.js", "./content.js"]
+    }
+  ]
+}
