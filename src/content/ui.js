@@ -110,7 +110,6 @@ function createEditor() {
   let editorTextArea = document.createElement('textarea')
 
   container.classList.add('editor-container', 'hidden')
-
   ;(document.body: any).appendChild(container)
   container.appendChild(topBar)
   container.appendChild(editorTextArea)
