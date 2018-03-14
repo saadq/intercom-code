@@ -1,0 +1,32 @@
+.editor-container {
+  width: calc(100vw - 70px);
+  height: 100vh;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 70px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-container.hidden {
+  display: none;
+}
+
+.editor-topbar {
+  width: 90%;
+  height: 30px;
+  background: black;
+  border: 1px solid black;
+}
+
+.editor-container .CodeMirror {
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  width: 90% !important;
+  height: 90% !important;
+  z-index: 10;
+}

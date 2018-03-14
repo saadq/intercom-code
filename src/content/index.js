@@ -22,7 +22,7 @@ let interval = setInterval(() => {
  *
  * <div class="inbox__conversation-controls__inserter ember-view">
  *   <div class="inbox__conversation-controls__inserter-opener js__popover-opener js__overlay-opener ember-view">
- *     <!-- icon goes here -->
+ *     <!-- icon element goes here -->
  *   </div>
  * </div>
  */
@@ -33,6 +33,9 @@ function appendCodeIcon(iconContainer: HTMLElement) {
     'ember-view'
   ]
   controlsInserter.classList.add(...controlsInserterClasses)
+  controlsInserter.onclick = () => {
+    editor.show()
+  }
 
   let controlsInserterOpener = document.createElement('div')
   let controlsInserterOpenerClasses = [
@@ -50,7 +53,6 @@ function appendCodeIcon(iconContainer: HTMLElement) {
   codeIcon.style.width = '16px'
   codeIcon.style.height = '16px'
   codeIcon.classList.add(...codeIconClasses)
-  codeIcon.onclick = editor.open()
 
   // Connect all our dynamically created elements together
   controlsInserterOpener.appendChild(codeIcon)

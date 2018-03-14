@@ -14,7 +14,8 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: './src', to: './', ignore: 'content/**/*.*' }
+      { from: './src', to: './', ignore: 'content/**/*.*' },
+      { from: './src/content/styles.css', to: './' }
     ])
   ]
 }

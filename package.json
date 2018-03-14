@@ -1,15 +1,17 @@
 {
   "name": "intercom-code",
-  "version": "0.1.0",
   "description": "A chrome extension for writing code snippets with Intercom",
-  "scripts": {
-    "clean": "trash dist",
-    "build": "webpack --mode production ./src/content/index.js --output ./dist/content.js",
-    "rebuild": "npm run clean && npm run build",
-    "develop": "webpack --mode development --watch ./src/content/index.js --output ./dist/content.js"
-  },
   "author": "Saad Quadri",
   "license": "MIT",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "webpack --mode production ./src/content/index.js --output ./dist/content.js",
+    "clean": "trash dist",
+    "develop": "webpack --mode development --watch ./src/content/index.js --output ./dist/content.js",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "dependencies": {
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
