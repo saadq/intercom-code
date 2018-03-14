@@ -2,18 +2,18 @@
  * @flow
  */
 
-import editor from './editor'
+import editor from "./editor";
 
 // Wait for intercom chat panel to load before appending the code icon
 let interval = setInterval(() => {
-  let iconContainerClass = '.js__conversation-controls-action-icons'
-  let iconContainer = document.querySelector(iconContainerClass)
+  let iconContainerClass = ".js__conversation-controls-action-icons";
+  let iconContainer = document.querySelector(iconContainerClass);
 
   if (iconContainer) {
-    clearInterval(interval)
-    appendCodeIcon(iconContainer)
+    clearInterval(interval);
+    appendCodeIcon(iconContainer);
   }
-}, 200)
+}, 200);
 
 /**
  * Adds a new code icon to the chat window
@@ -27,35 +27,35 @@ let interval = setInterval(() => {
  * </div>
  */
 function appendCodeIcon(iconContainer: HTMLElement) {
-  let controlsInserter = document.createElement('div')
+  let controlsInserter = document.createElement("div");
   let controlsInserterClasses = [
-    'inbox__conversation-controls__inserter',
-    'ember-view'
-  ]
-  controlsInserter.classList.add(...controlsInserterClasses)
+    "inbox__conversation-controls__inserter",
+    "ember-view"
+  ];
+  controlsInserter.classList.add(...controlsInserterClasses);
   controlsInserter.onclick = () => {
-    editor.show()
-  }
+    editor.show();
+  };
 
-  let controlsInserterOpener = document.createElement('div')
+  let controlsInserterOpener = document.createElement("div");
   let controlsInserterOpenerClasses = [
-    'inbox__conversation-controls__inserter-opener',
-    'js__popover-opener',
-    'js__overlay-opener',
-    'ember-view'
-  ]
-  controlsInserterOpener.dataset.content = 'Insert a code snippet'
-  controlsInserterOpener.classList.add(...controlsInserterOpenerClasses)
+    "inbox__conversation-controls__inserter-opener",
+    "js__popover-opener",
+    "js__overlay-opener",
+    "ember-view"
+  ];
+  controlsInserterOpener.dataset.content = "Insert a code snippet";
+  controlsInserterOpener.classList.add(...controlsInserterOpenerClasses);
 
   // Create the code icon
-  let codeIcon = document.createElement('i')
-  let codeIconClasses = ['fas', 'fa-code', 'interface-icon', 'o__standard']
-  codeIcon.style.width = '16px'
-  codeIcon.style.height = '16px'
-  codeIcon.classList.add(...codeIconClasses)
+  let codeIcon = document.createElement("i");
+  let codeIconClasses = ["fas", "fa-code", "interface-icon", "o__standard"];
+  codeIcon.style.width = "16px";
+  codeIcon.style.height = "16px";
+  codeIcon.classList.add(...codeIconClasses);
 
   // Connect all our dynamically created elements together
-  controlsInserterOpener.appendChild(codeIcon)
-  controlsInserter.appendChild(controlsInserterOpener)
-  iconContainer.appendChild(controlsInserter)
+  controlsInserterOpener.appendChild(codeIcon);
+  controlsInserter.appendChild(controlsInserterOpener);
+  iconContainer.appendChild(controlsInserter);
 }

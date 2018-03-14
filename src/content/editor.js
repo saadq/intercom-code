@@ -2,63 +2,63 @@
  * @flow
  */
 
-declare var CodeMirror: Object
-declare var document: Object
+declare var CodeMirror: Object;
+declare var document: Object;
 
-let container = document.createElement('div')
-let editorTextArea = document.createElement('textarea')
+let container = document.createElement("div");
+let editorTextArea = document.createElement("textarea");
 
-container.classList.add('editor-container', 'hidden')
+container.classList.add("editor-container", "hidden");
 
 container.onclick = e => {
-  if (e.target.classList.contains('editor-container')) {
-    editor.hide()
-    codemirror.refresh()
+  if (e.target.classList.contains("editor-container")) {
+    editor.hide();
+    codemirror.refresh();
   }
-}
+};
 
-document.body.appendChild(container)
-container.appendChild(makeTopBar())
-container.appendChild(editorTextArea)
+document.body.appendChild(container);
+container.appendChild(makeTopBar());
+container.appendChild(editorTextArea);
 
 let codemirror = CodeMirror.fromTextArea(editorTextArea, {
   lineNumbers: true,
   viewportMargin: Infinity,
-  mode: 'javascript',
+  mode: "javascript",
   autofocus: true
-})
+});
 
-codemirror.refresh()
+codemirror.refresh();
 
 let editor = {
   hidden: true,
 
   show() {
     if (this.hidden === false) {
-      return
+      return;
     }
 
-    this.hidden = false
-    container.classList.toggle('hidden')
-    codemirror.refresh()
-    codemirror.focus()
+    this.hidden = false;
+    container.classList.toggle("hidden");
+    codemirror.refresh();
+    codemirror.focus();
   },
 
   hide() {
     if (this.hidden === true) {
-      return
+      return;
     }
 
-    this.hidden = true
-    container.classList.toggle('hidden')
-    codemirror.refresh()
+    this.hidden = true;
+    container.classList.toggle("hidden");
+    codemirror.refresh();
   }
-}
+};
 
 function makeTopBar() {
-  let topBar = document.createElement('div')
-  topBar.classList.add('editor-topbar')
-  return topBar
+  let topBar = document.createElement("div");
+  topBar.classList.add("editor-topbar");
+  return topBar;
 }
 
-export default editor
+export default editor;

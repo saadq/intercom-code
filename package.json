@@ -8,10 +8,10 @@
     "build": "webpack --mode production ./src/content/index.js --output ./dist/content.js",
     "clean": "trash dist",
     "develop": "webpack --mode development --watch ./src/content/index.js --output ./dist/content.js",
+    "format": "prettier --write \"src/content/**/*.*\"",
     "rebuild": "npm run clean && npm run build"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
@@ -20,6 +20,7 @@
     "copy-webpack-plugin": "^4.5.1",
     "flow-bin": "^0.67.1",
     "flow-interfaces-chrome": "^0.4.0",
+    "prettier": "^1.11.1",
     "trash-cli": "^1.4.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11"
