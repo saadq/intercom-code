@@ -9,6 +9,7 @@
     "clean": "trash dist",
     "develop": "webpack --mode development --watch ./src/content/index.js --output ./dist/content.js",
     "format": "prettier --write \"src/content/**/*.*\"",
+    "lint": "blyss | snazzy",
     "rebuild": "npm run clean && npm run build"
   },
   "dependencies": {},
@@ -17,10 +18,12 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
+    "blyss": "^11.0.0",
     "copy-webpack-plugin": "^4.5.1",
     "flow-bin": "^0.67.1",
     "flow-interfaces-chrome": "^0.4.0",
     "prettier": "^1.11.1",
+    "snazzy": "^7.1.1",
     "trash-cli": "^1.4.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11"

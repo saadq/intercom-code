@@ -2,63 +2,42 @@
  * @flow
  */
 
-declare var CodeMirror: Object;
-declare var document: Object;
+type Settings = {
+  codemirror: Object,
+  container: HTMLElement
+}
 
-let container = document.createElement("div");
-let editorTextArea = document.createElement("textarea");
+class Editor {
+  hidden: boolean
+  codemirror: Object
+  container: HTMLElement
 
-container.classList.add("editor-container", "hidden");
-
-container.onclick = e => {
-  if (e.target.classList.contains("editor-container")) {
-    editor.hide();
-    codemirror.refresh();
+  constructor({ codemirror, container }: Settings) {
+    this.hidden = true
+    this.codemirror = codemirror
+    this.container = container
   }
-};
-
-document.body.appendChild(container);
-container.appendChild(makeTopBar());
-container.appendChild(editorTextArea);
-
-let codemirror = CodeMirror.fromTextArea(editorTextArea, {
-  lineNumbers: true,
-  viewportMargin: Infinity,
-  mode: "javascript",
-  autofocus: true
-});
-
-codemirror.refresh();
-
-let editor = {
-  hidden: true,
 
   show() {
     if (this.hidden === false) {
-      return;
+      return
     }
 
-    this.hidden = false;
-    container.classList.toggle("hidden");
-    codemirror.refresh();
-    codemirror.focus();
-  },
+    this.container.classList.toggle('hidden')
+    this.codemirror.refresh()
+    this.codemirror.focus()
+    this.hidden = false
+  }
 
   hide() {
     if (this.hidden === true) {
-      return;
+      return
     }
 
-    this.hidden = true;
-    container.classList.toggle("hidden");
-    codemirror.refresh();
+    this.container.classList.toggle('hidden')
+    this.codemirror.refresh()
+    this.hidden = true
   }
-};
-
-function makeTopBar() {
-  let topBar = document.createElement("div");
-  topBar.classList.add("editor-topbar");
-  return topBar;
 }
 
-export default editor;
+export default Editor

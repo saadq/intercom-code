@@ -19,8 +19,23 @@
 .editor-topbar {
   width: 90%;
   height: 30px;
-  background: black;
-  border: 1px solid black;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-buttons {
+  margin-left: 25px;
+}
+
+.editor-buttons button {
+  margin-right: 15px;
+}
+
+.fa-times-circle {
+  margin-right: 25px;
 }
 
 .editor-container .CodeMirror {
