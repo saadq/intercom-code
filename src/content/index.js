@@ -29,8 +29,8 @@ setInterval(() => {
     let iconWrapper: any = editor.container.querySelector('.icon-wrapper')
     iconWrapper.onclick = () => editor.hide()
 
-    editor.container.onclick = (event) => {
-      if (event.target.classList.contains("editor-container")) {
+    editor.container.onclick = event => {
+      if (event.target.classList.contains('editor-container')) {
         editor.hide()
       }
     }

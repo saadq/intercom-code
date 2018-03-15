@@ -38,6 +38,10 @@ class Editor {
     this.codemirror.refresh()
     this.hidden = true
   }
+
+  getCode() {
+    return this.codemirror.getValue()
+  }
 }
 
 export default Editor
