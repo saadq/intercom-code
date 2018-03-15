@@ -32,7 +32,6 @@ function createCodeIcon() {
     'js__overlay-opener',
     'ember-view'
   ]
-
   controlsInserterOpener.dataset.content = 'Insert a code snippet'
   controlsInserterOpener.classList.add(...controlsInserterOpenerClasses)
 
@@ -60,7 +59,9 @@ function createCodeIcon() {
  *     <button>Insert as Text</button>
  *     <button>Insert as Gist</button>
  *   </div>
- *   <i class="fas fa-times-circle" />
+ *   <div class="icon-wrapper">
+ *     <i class="fas fa-times-circle" />
+ *   </div>
  * </div>
  */
 function createTopBar() {
@@ -81,14 +82,20 @@ function createTopBar() {
   insertGistBtn.textContent = 'Insert as Gist'
   insertGistBtn.classList.add('editor-button')
 
+  // Make icon wrapper
+  let iconWrapper = document.createElement('div')
+  iconWrapper.classList.add('icon-wrapper')
+
   // Make the close icon
   let closeIcon = document.createElement('i')
   closeIcon.classList.add('fas', 'fa-times-circle')
 
+  // Connect all the created elements together
   topBar.appendChild(editorButtons)
   editorButtons.appendChild(insertTextBtn)
   editorButtons.appendChild(insertGistBtn)
-  topBar.appendChild(closeIcon)
+  topBar.appendChild(iconWrapper)
+  iconWrapper.appendChild(closeIcon)
 
   return topBar
 }
@@ -99,6 +106,7 @@ function createTopBar() {
  * The structure looks like this:
  *
  * <div class="editor-container">
+ *   <TopBar /> (from makeTopBar function)
  *   <textarea>
  *     ...
  *   </textarea>
