@@ -2,6 +2,8 @@
  * @flow
  */
 
+declare var CodeMirror: Object
+
 /**
  * Adds a new code icon to the chat window
  *
@@ -107,6 +109,7 @@ function createTopBar() {
   let insertGistBtn = document.createElement('button')
   insertGistBtn.textContent = 'Insert as Gist'
   insertGistBtn.classList.add('editor-button')
+  insertGistBtn.id = 'gist-btn'
 
   // Make right-side container
   let rightContainer = document.createElement('div')

@@ -15,7 +15,9 @@
     "test": "npm run lint && npm run typecheck",
     "typecheck": "flow"
   },
-  "dependencies": {},
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
