@@ -19,20 +19,28 @@ setInterval(() => {
 
   let codeIcon = iconContainer.querySelector('.fa-code')
 
-  if (!codeIcon) {
-    let icon = createCodeIcon()
-    let editor = new Editor(createEditor())
+  if (codeIcon) {
+    return
+  }
 
-    iconContainer.appendChild(icon)
-    icon.onclick = () => editor.show()
+  let icon = createCodeIcon()
+  let editor = new Editor(createEditor())
 
-    let iconWrapper: any = editor.container.querySelector('.icon-wrapper')
-    iconWrapper.onclick = () => editor.hide()
+  iconContainer.appendChild(icon)
+  icon.onclick = () => editor.show()
 
-    editor.container.onclick = event => {
-      if (event.target.classList.contains('editor-container')) {
-        editor.hide()
-      }
+  let iconWrapper: any = editor.container.querySelector('.icon-wrapper')
+  iconWrapper.onclick = () => editor.hide()
+
+  editor.container.onclick = event => {
+    if (event.target.classList.contains('editor-container')) {
+      editor.hide()
     }
   }
+
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.keyCode === 27) {
+      editor.hide()
+    }
+  })
 }, 50)
