@@ -2,8 +2,6 @@
  * @flow
  */
 
-declare var CodeMirror: Object
-
 /**
  * Adds a new code icon to the chat window
  *
@@ -83,18 +81,22 @@ function createTopBar() {
 
   // Create language dropdown
   let dropdown = document.createElement('select')
-  let langs = ['JavaScript', 'HTMLMixed', 'CSS', 'Sass', 'Python', 'Ruby']
 
-  langs.forEach(lang => {
+  let langs = {
+    JavaScript: 'javascript',
+    HTML: 'htmlmixed',
+    CSS: 'css',
+    Sass: 'sass',
+    Python: 'python',
+    Ruby: 'ruby'
+  }
+
+  Object.entries(langs).forEach((lang: any) => {
+    let [key, val] = lang
     let option = document.createElement('option')
-    option.textContent = lang
+    option.textContent = key
+    option.value = val
     dropdown.appendChild(option)
-  })
-
-  dropdown.addEventListener('change', (e: Event) => {
-    if (e.target instanceof HTMLSelectElement) {
-      console.log(e.target.value)
-    }
   })
 
   // Make 'Insert as text' button

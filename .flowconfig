@@ -6,6 +6,7 @@
 
 [libs]
 node_modules/flow-interfaces-chrome/interfaces/
+src/content/decls.js
 
 [lints]
 

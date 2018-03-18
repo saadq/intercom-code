@@ -37,6 +37,7 @@
       "src/assets/**/*.*"
     ],
     "globals": [
+      "CodeMirror",
       "HTMLDivElement",
       "HTMLSelectElement"
     ]

@@ -23,9 +23,9 @@ setInterval(() => {
     return
   }
 
-  let icon = createCodeIcon()
   let editor = new Editor(createEditor())
 
+  let icon = createCodeIcon()
   iconContainer.appendChild(icon)
   icon.onclick = () => editor.show()
 
@@ -46,4 +46,14 @@ setInterval(() => {
       editor.hide()
     }
   })
+
+  let dropdown: any = document.querySelector('select')
+
+  dropdown.addEventListener('change', (e: Event) => {
+    if (e.target instanceof HTMLSelectElement) {
+      let lang = e.target.value
+      editor.codemirror.setOption('mode', lang)
+    }
+  })
+
 }, 50)
