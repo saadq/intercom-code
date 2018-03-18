@@ -11,7 +11,9 @@
     "develop": "webpack --mode development --watch ./src/content/index.js --output ./dist/content.js",
     "format": "prettier --write \"src/content/**/*.*\"",
     "lint": "blyss | snazzy",
-    "rebuild": "npm run clean && npm run build"
+    "rebuild": "npm run clean && npm run build",
+    "test": "npm run lint && npm run typecheck",
+    "typecheck": "flow"
   },
   "dependencies": {},
   "devDependencies": {
@@ -21,7 +23,7 @@
     "babel-preset-flow": "^6.23.0",
     "blyss": "^11.0.0",
     "copy-webpack-plugin": "^4.5.1",
-    "flow-bin": "^0.67.1",
+    "flow-bin": "^0.68.0",
     "flow-coverage-report": "^0.5.0",
     "flow-interfaces-chrome": "^0.4.0",
     "prettier": "^1.11.1",
@@ -29,5 +31,10 @@
     "trash-cli": "^1.4.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11"
+  },
+  "blyss": {
+    "ignore": [
+      "src/assets/**/*.*"
+    ]
   }
 }

@@ -1,4 +1,6 @@
 [ignore]
+.*/src/assets/.*
+.*/node_modules/.*
 
 [include]
 
