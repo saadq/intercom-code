@@ -55,6 +55,14 @@ function createCodeIcon() {
  * The topbar has a structure like so:
  *
  * <div class="editor-topbar">
+ *   <select>
+ *     <option>JavaScript</option>
+ *     <option>HTML</option>
+ *     <option>CSS</option>
+ *     <option>Sass</option>
+ *     <option>Python</option>
+ *     <option>Ruby</option>
+ *   </select>
  *   <div class="editor-buttons">
  *     <button>Insert as Text</button>
  *     <button>Insert as Gist</button>
@@ -69,9 +77,25 @@ function createTopBar() {
   let topBar = document.createElement('div')
   topBar.classList.add('editor-topbar')
 
-  // Make editor-buttons container
-  let editorButtons = document.createElement('div')
-  editorButtons.classList.add('editor-buttons')
+  // Make left-side container
+  let leftContainer = document.createElement('div')
+  leftContainer.classList.add('editor-buttons')
+
+  // Create language dropdown
+  let dropdown = document.createElement('select')
+  let langs = ['JavaScript', 'HTMLMixed', 'CSS', 'Sass', 'Python', 'Ruby']
+
+  langs.forEach(lang => {
+    let option = document.createElement('option')
+    option.textContent = lang
+    dropdown.appendChild(option)
+  })
+
+  dropdown.addEventListener('change', (e: Event) => {
+    if (e.target instanceof HTMLSelectElement) {
+      console.log(e.target.value)
+    }
+  })
 
   // Make 'Insert as text' button
   let insertTextBtn = document.createElement('button')
@@ -82,20 +106,21 @@ function createTopBar() {
   insertGistBtn.textContent = 'Insert as Gist'
   insertGistBtn.classList.add('editor-button')
 
-  // Make icon wrapper
-  let iconWrapper = document.createElement('div')
-  iconWrapper.classList.add('icon-wrapper')
+  // Make right-side container
+  let rightContainer = document.createElement('div')
+  rightContainer.classList.add('icon-wrapper')
 
   // Make the close icon
   let closeIcon = document.createElement('i')
   closeIcon.classList.add('fas', 'fa-times-circle')
 
   // Connect all the created elements together
-  topBar.appendChild(editorButtons)
-  editorButtons.appendChild(insertTextBtn)
-  editorButtons.appendChild(insertGistBtn)
-  topBar.appendChild(iconWrapper)
-  iconWrapper.appendChild(closeIcon)
+  topBar.appendChild(leftContainer)
+  leftContainer.appendChild(dropdown)
+  leftContainer.appendChild(insertTextBtn)
+  leftContainer.appendChild(insertGistBtn)
+  topBar.appendChild(rightContainer)
+  rightContainer.appendChild(closeIcon)
 
   return topBar
 }

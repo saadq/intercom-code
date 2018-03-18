@@ -35,6 +35,10 @@
   "blyss": {
     "ignore": [
       "src/assets/**/*.*"
+    ],
+    "globals": [
+      "HTMLDivElement",
+      "HTMLSelectElement"
     ]
   }
 }

@@ -32,11 +32,14 @@ setInterval(() => {
   let iconWrapper: any = editor.container.querySelector('.icon-wrapper')
   iconWrapper.onclick = () => editor.hide()
 
-  editor.container.onclick = event => {
-    if (event.target.classList.contains('editor-container')) {
+  editor.container.addEventListener('click', (e: MouseEvent) => {
+    if (
+      e.target instanceof HTMLDivElement &&
+      e.target.classList.contains('editor-container')
+    ) {
       editor.hide()
     }
-  }
+  })
 
   document.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.keyCode === 27) {
