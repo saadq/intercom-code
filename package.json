@@ -49,6 +49,7 @@
       "src/assets/**/*.*"
     ],
     "globals": [
+      "fetch",
       "CodeMirror",
       "HTMLDivElement",
       "HTMLSelectElement"

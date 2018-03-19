@@ -80,9 +80,34 @@ class Editor extends React.Component<Props, State> {
     this.editor.focus()
   }
 
-  createGist = async () => {
-    console.log(this.state.code)
+  insertAsGist = async () => {
+    const data = {
+      files: {
+        'app.js': {
+          content: this.state.code
+        }
+      }
+    }
+
+    const request = {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }
+
+    const response = await fetch('https://api.github.com/gists', request)
+    const json = await response.json()
+    const gistURL = json.html_url
+
+    let chatBox = document.querySelector('.composer-inbox p')
+
+    if (chatBox) {
+      chatBox.textContent = gistURL
+    }
+
+    this.props.hideEditor()
   }
+
+  insertAsText() {}
 
   clearCode = () => {
     this.setState({ code: '' })
@@ -96,11 +121,11 @@ class Editor extends React.Component<Props, State> {
           <TopBar
             hideEditor={this.props.hideEditor}
             changeMode={this.changeMode}
-            createGist={this.createGist}
+            insertAsGist={this.insertAsGist}
+            insertAsText={this.insertAsText}
             clearCode={this.clearCode}
           />
           <StyledCodeMirror
-            autofocus
             value={this.state.code}
             options={{
               mode: this.state.mode,

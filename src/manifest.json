@@ -7,5 +7,8 @@
       "matches": ["http://app.intercom.io/*", "https://app.intercom.io/*"],
       "js": ["./fontawesome.js", "./content.js"]
     }
+  ],
+  "permissions": [
+    "https://api.github.com/"
   ]
 }

@@ -29,11 +29,18 @@ const CloseIcon = styled.div`
 type Props = {|
   changeMode: (e: SyntheticEvent<HTMLSelectElement>) => void,
   hideEditor: () => void,
-  createGist: () => Promise<void>,
+  insertAsText: () => void,
+  insertAsGist: () => Promise<void>,
   clearCode: () => void
 |}
 
-function TopBar({ changeMode, hideEditor, createGist, clearCode }: Props) {
+function TopBar({
+  changeMode,
+  hideEditor,
+  insertAsText,
+  insertAsGist,
+  clearCode
+}: Props) {
   return (
     <Header>
       <Dropdown onChange={changeMode}>
@@ -46,7 +53,7 @@ function TopBar({ changeMode, hideEditor, createGist, clearCode }: Props) {
       </Dropdown>
       <div>
         <button>Insert as Text</button>
-        <button onClick={createGist}>Insert as Gist</button>
+        <button onClick={insertAsGist}>Insert as Gist</button>
         <button onClick={clearCode}>Clear Code</button>
       </div>
       <CloseIcon onClick={hideEditor}>
