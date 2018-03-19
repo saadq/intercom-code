@@ -16,7 +16,7 @@ import 'codemirror/mode/python/python'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material.css'
 
-const Backdrop = styled.div`
+let Backdrop = styled.div`
   background: rgba(0, 0, 0, 0.5);
   width: calc(100vw - 70px);
   min-height: 100vh;
@@ -24,17 +24,17 @@ const Backdrop = styled.div`
   position: fixed;
   left: 70px;
   z-index: 10;
-  display: flex;
+  display: ${props => (props.hidden ? 'none' : 'flex')};
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `
 
-const Wrapper = styled.div`
+let Wrapper = styled.div`
   width: 80vw;
 `
 
-const StyledCodeMirror = styled(CodeMirror)`
+let StyledCodeMirror = styled(CodeMirror)`
   .CodeMirror {
     z-index: 10;
     width: 100% !important;
@@ -44,10 +44,12 @@ const StyledCodeMirror = styled(CodeMirror)`
 
 type State = {|
   code: string,
-  mode: string
+  mode: string,
+  isLoading: boolean
 |}
 
 type Props = {|
+  hidden: boolean,
   hideEditor: () => void
 |}
 
@@ -57,7 +59,8 @@ class Editor extends React.Component<Props, State> {
 
   state = {
     code: '',
-    mode: 'javascript'
+    mode: 'javascript',
+    isLoading: false
   }
 
   componentDidMount() {
@@ -80,8 +83,15 @@ class Editor extends React.Component<Props, State> {
     this.editor.focus()
   }
 
-  insertAsGist = async () => {
-    const extensions = {
+  createGist = async () => {
+    let { hideEditor } = this.props
+    let { code, mode, isLoading } = this.state
+
+    if (code.trim() === '' || isLoading) {
+      return
+    }
+
+    let exts = {
       javascript: 'js',
       css: 'css',
       sass: 'scss',
@@ -90,22 +100,28 @@ class Editor extends React.Component<Props, State> {
       python: 'py'
     }
 
-    const data = {
+    let fileName = `code.${exts[mode]}`
+
+    let data = {
       files: {
-        [`code.${extensions[this.state.mode]}`]: {
-          content: this.state.code
+        [fileName]: {
+          content: code
         }
       }
     }
 
-    const request = {
+    let request = {
       method: 'POST',
       body: JSON.stringify(data)
     }
 
-    const response = await fetch('https://api.github.com/gists', request)
-    const json = await response.json()
-    const gistURL = json.html_url
+    this.setState({ isLoading: true })
+
+    let response = await fetch('https://api.github.com/gists', request)
+    let json = await response.json()
+    let gistURL = json.html_url
+
+    this.setState({ isLoading: false })
 
     let chatBox = document.querySelector('.composer-inbox p')
 
@@ -114,17 +130,7 @@ class Editor extends React.Component<Props, State> {
     }
 
     chatBox.textContent = gistURL
-    this.props.hideEditor()
-  }
-
-  insertAsText = () => {
-    let chatBox = document.querySelector('.composer-inbox')
-
-    if (!chatBox) {
-      return
-    }
-
-    chatBox.innerHTML = `<pre class="code">${this.state.code}</pre>`
+    hideEditor()
   }
 
   clearCode = () => {
@@ -134,13 +140,13 @@ class Editor extends React.Component<Props, State> {
 
   render() {
     return (
-      <Backdrop>
+      <Backdrop hidden={this.props.hidden}>
         <Wrapper innerRef={wrapper => (this.wrapper = wrapper)}>
           <TopBar
+            isLoading={this.state.isLoading}
             hideEditor={this.props.hideEditor}
             changeMode={this.changeMode}
-            insertAsGist={this.insertAsGist}
-            insertAsText={this.insertAsText}
+            createGist={this.createGist}
             clearCode={this.clearCode}
           />
           <StyledCodeMirror
@@ -151,10 +157,7 @@ class Editor extends React.Component<Props, State> {
               lineNumbers: true
             }}
             onBeforeChange={(editor, data, code) => this.setState({ code })}
-            editorDidMount={editor => {
-              this.editor = editor
-              editor.focus()
-            }}
+            editorDidMount={editor => (this.editor = editor)}
           />
         </Wrapper>
       </Backdrop>

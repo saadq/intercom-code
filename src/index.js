@@ -24,7 +24,7 @@ setInterval(() => {
     return
   }
 
-  const root = document.createElement('div')
+  let root = document.createElement('div')
   document.body && document.body.appendChild(root)
 
   render(<App iconRoot={controls} />, root)

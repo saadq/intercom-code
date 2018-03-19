@@ -16,7 +16,7 @@ type State = {|
 
 class App extends React.Component<Props, State> {
   state = {
-    editorIsHidden: false
+    editorIsHidden: true
   }
 
   showEditor = () => {
@@ -30,7 +30,10 @@ class App extends React.Component<Props, State> {
   render() {
     return (
       <>
-        {!this.state.editorIsHidden && <Editor hideEditor={this.hideEditor} />}
+        <Editor
+          hidden={this.state.editorIsHidden}
+          hideEditor={this.hideEditor}
+        />
         <Icon showEditor={this.showEditor} iconRoot={this.props.iconRoot} />
       </>
     )

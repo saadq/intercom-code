@@ -4,8 +4,9 @@
 
 import * as React from 'react'
 import styled from 'styled-components'
+import LoadingBar from './LoadingBar'
 
-const Header = styled.header`
+let Header = styled.header`
   height: 30px;
   padding: 10px 0;
   background: #212b30;
@@ -18,48 +19,51 @@ const Header = styled.header`
   justify-content: space-between;
 `
 
-const Dropdown = styled.select`
+let Dropdown = styled.select`
   margin-left: 25px;
 `
 
-const CloseIcon = styled.div`
+let CloseIcon = styled.div`
   margin-right: 25px;
+  cursor: pointer;
 `
 
 type Props = {|
+  isLoading: boolean,
   changeMode: (e: SyntheticEvent<HTMLSelectElement>) => void,
   hideEditor: () => void,
-  insertAsText: () => void,
-  insertAsGist: () => Promise<void>,
+  createGist: () => Promise<void>,
   clearCode: () => void
 |}
 
 function TopBar({
+  isLoading,
   changeMode,
   hideEditor,
-  insertAsText,
-  insertAsGist,
+  createGist,
   clearCode
 }: Props) {
   return (
-    <Header>
-      <Dropdown onChange={changeMode}>
-        <option value="javascript">JavaScript</option>
-        <option value="htmlmixed">HTML</option>
-        <option value="css">CSS</option>
-        <option value="sass">Sass</option>
-        <option value="python">Python</option>
-        <option value="ruby">Ruby</option>
-      </Dropdown>
-      <div>
-        <button onClick={insertAsText}>Insert as Text</button>
-        <button onClick={insertAsGist}>Insert as Gist</button>
-        <button onClick={clearCode}>Clear Code</button>
-      </div>
-      <CloseIcon onClick={hideEditor}>
-        <i className="fas fa-times-circle" />
-      </CloseIcon>
-    </Header>
+    <>
+      <LoadingBar isLoading={isLoading} />
+      <Header>
+        <Dropdown onChange={changeMode}>
+          <option value="javascript">JavaScript</option>
+          <option value="htmlmixed">HTML</option>
+          <option value="css">CSS</option>
+          <option value="sass">Sass</option>
+          <option value="python">Python</option>
+          <option value="ruby">Ruby</option>
+        </Dropdown>
+        <div>
+          <button onClick={createGist}>Insert as Gist</button>
+          <button onClick={clearCode}>Clear Code</button>
+        </div>
+        <CloseIcon onClick={hideEditor}>
+          <i className="fas fa-times-circle" />
+        </CloseIcon>
+      </Header>
+    </>
   )
 }
 
