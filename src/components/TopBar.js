@@ -52,7 +52,7 @@ function TopBar({
         <option value="ruby">Ruby</option>
       </Dropdown>
       <div>
-        <button>Insert as Text</button>
+        <button onClick={insertAsText}>Insert as Text</button>
         <button onClick={insertAsGist}>Insert as Gist</button>
         <button onClick={clearCode}>Clear Code</button>
       </div>

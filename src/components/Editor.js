@@ -81,9 +81,18 @@ class Editor extends React.Component<Props, State> {
   }
 
   insertAsGist = async () => {
+    const extensions = {
+      javascript: 'js',
+      css: 'css',
+      sass: 'scss',
+      htmlmixed: 'html',
+      ruby: 'rb',
+      python: 'py'
+    }
+
     const data = {
       files: {
-        'app.js': {
+        [`code.${extensions[this.state.mode]}`]: {
           content: this.state.code
         }
       }
@@ -100,14 +109,23 @@ class Editor extends React.Component<Props, State> {
 
     let chatBox = document.querySelector('.composer-inbox p')
 
-    if (chatBox) {
-      chatBox.textContent = gistURL
+    if (!chatBox) {
+      return
     }
 
+    chatBox.textContent = gistURL
     this.props.hideEditor()
   }
 
-  insertAsText() {}
+  insertAsText = () => {
+    let chatBox = document.querySelector('.composer-inbox')
+
+    if (!chatBox) {
+      return
+    }
+
+    chatBox.innerHTML = `<pre class="code">${this.state.code}</pre>`
+  }
 
   clearCode = () => {
     this.setState({ code: '' })
