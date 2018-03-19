@@ -8,7 +8,5 @@
       "js": ["./fontawesome.js", "./content.js"]
     }
   ],
-  "permissions": [
-    "https://api.github.com/"
-  ]
+  "permissions": ["https://api.github.com/"]
 }
