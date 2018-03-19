@@ -1,10 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    './src/content'
-  ],
+  entry: ['@babel/polyfill', './src'],
   module: {
     rules: [
       {
@@ -13,13 +10,17 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: './src', to: './', ignore: 'content/**/*.*' },
-      { from: './src/content/styles.css', to: './' }
+      { from: './src/manifest.json', to: './' },
+      { from: './src/assets', to: './', ignore: 'content/**/*.*' }
     ])
   ]
 }

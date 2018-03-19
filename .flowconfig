@@ -10,5 +10,7 @@ node_modules/flow-interfaces-chrome/interfaces/
 [lints]
 
 [options]
+module.file_ext=.js
+module.file_ext=.css
 
 [strict]

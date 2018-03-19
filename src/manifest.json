@@ -5,19 +5,7 @@
   "content_scripts": [
     {
       "matches": ["http://app.intercom.io/*", "https://app.intercom.io/*"],
-      "js": [
-        "./assets/codemirror/codemirror.js",
-        "./assets/codemirror/modes/xml.js",
-        "./assets/codemirror/modes/css.js",
-        "./assets/codemirror/modes/javascript.js",
-        "./assets/codemirror/modes/htmlmixed.js",
-        "./assets/codemirror/modes/python.js",
-        "./assets/codemirror/modes/ruby.js",
-        "./assets/codemirror/modes/sass.js",
-        "./assets/fontawesome.js",
-        "./content.js"
-      ],
-      "css": ["./assets/codemirror/codemirror.css", "./styles.css"]
+      "js": ["./fontawesome.js", "./content.js"]
     }
   ]
 }
