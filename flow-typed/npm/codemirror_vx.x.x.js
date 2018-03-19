@@ -1,3 +1,5 @@
+// @flow
+
 // flow-typed signature: d5642cb53418545eddcbc4725a9c40a7
 // flow-typed version: <<STUB>>/codemirror_v^5.35.0/flow_v0.68.0
 
@@ -1209,6 +1211,9 @@ declare module 'codemirror/lib/codemirror.js' {
   declare module.exports: $Exports<'codemirror/lib/codemirror'>
 }
 declare module 'codemirror/lib/codemirror.css' {
+  declare module.exports: $Exports<'codemirror/lib/codemirror'>
+}
+declare module 'codemirror/theme/material.css' {
   declare module.exports: $Exports<'codemirror/lib/codemirror'>
 }
 declare module 'codemirror/mode/apl/apl.js' {

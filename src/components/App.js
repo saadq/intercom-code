@@ -11,26 +11,26 @@ type Props = {|
 |}
 
 type State = {|
-  hideEditor: boolean
+  editorIsHidden: boolean
 |}
 
 class App extends React.Component<Props, State> {
   state = {
-    hideEditor: true
+    editorIsHidden: false
   }
 
   showEditor = () => {
-    this.setState({ hideEditor: false })
+    this.setState({ editorIsHidden: false })
   }
 
   hideEditor = () => {
-    this.setState({ hideEditor: true })
+    this.setState({ editorIsHidden: true })
   }
 
   render() {
     return (
       <>
-        <Editor hideEditor={this.hideEditor} hidden={this.state.hideEditor} />
+        {!this.state.editorIsHidden && <Editor hideEditor={this.hideEditor} />}
         <Icon showEditor={this.showEditor} iconRoot={this.props.iconRoot} />
       </>
     )

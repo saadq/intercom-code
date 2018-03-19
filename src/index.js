@@ -12,7 +12,7 @@ import App from './components/App'
  */
 
 setInterval(() => {
-  let controls = document.querySelector('.js__conversation-controls__info-area.ember-view')
+  let controls = document.querySelector('.u__left.js__conversation-controls-action-icons')
 
   if (!controls) {
     return

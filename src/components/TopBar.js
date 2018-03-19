@@ -8,19 +8,18 @@ import styled from 'styled-components'
 const Header = styled.header`
   height: 30px;
   padding: 10px 0;
-  background: #fafafa;
-  border-bottom: 1px solid #ddd;
+  background: #212b30;
+  color: white;
+  border-bottom: 1px solid #151b1f;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `
 
-const Left = styled.div`
+const Dropdown = styled.select`
   margin-left: 25px;
-
-  * {
-    margin-right: 15px;
-  }
 `
 
 const CloseIcon = styled.div`
@@ -29,24 +28,27 @@ const CloseIcon = styled.div`
 
 type Props = {|
   changeMode: (e: SyntheticEvent<HTMLSelectElement>) => void,
-  hideEditor: () => void
+  hideEditor: () => void,
+  createGist: () => Promise<void>,
+  clearCode: () => void
 |}
 
-function TopBar({ changeMode, hideEditor }: Props) {
+function TopBar({ changeMode, hideEditor, createGist, clearCode }: Props) {
   return (
     <Header>
-      <Left>
-        <select onChange={changeMode}>
-          <option value="javascript">JavaScript</option>
-          <option value="htmlmixed">HTML</option>
-          <option value="css">CSS</option>
-          <option value="sass">Sass</option>
-          <option value="python">Python</option>
-          <option value="ruby">Ruby</option>
-        </select>
+      <Dropdown onChange={changeMode}>
+        <option value="javascript">JavaScript</option>
+        <option value="htmlmixed">HTML</option>
+        <option value="css">CSS</option>
+        <option value="sass">Sass</option>
+        <option value="python">Python</option>
+        <option value="ruby">Ruby</option>
+      </Dropdown>
+      <div>
         <button>Insert as Text</button>
-        <button>Insert as Gist</button>
-      </Left>
+        <button onClick={createGist}>Insert as Gist</button>
+        <button onClick={clearCode}>Clear Code</button>
+      </div>
       <CloseIcon onClick={hideEditor}>
         <i className="fas fa-times-circle" />
       </CloseIcon>

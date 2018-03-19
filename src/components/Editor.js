@@ -4,7 +4,8 @@
 
 import * as React from 'react'
 import styled from 'styled-components'
-import CodeMirror from 'react-codemirror'
+import { Controlled as CodeMirror } from 'react-codemirror2'
+import TopBar from './TopBar'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/css/css'
 import 'codemirror/mode/sass/sass'
@@ -13,11 +14,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/mode/ruby/ruby'
 import 'codemirror/mode/python/python'
 import 'codemirror/lib/codemirror.css'
-import TopBar from './TopBar'
-
-type StyleProps = {|
-  hidden: boolean
-|}
+import 'codemirror/theme/material.css'
 
 const Backdrop = styled.div`
   background: rgba(0, 0, 0, 0.5);
@@ -27,7 +24,7 @@ const Backdrop = styled.div`
   position: fixed;
   left: 70px;
   z-index: 10;
-  display: ${(props: StyleProps) => (props.hidden ? 'none' : 'flex')};
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -51,11 +48,11 @@ type State = {|
 |}
 
 type Props = {|
-  hidden: boolean,
   hideEditor: () => void
 |}
 
 class Editor extends React.Component<Props, State> {
+  editor: *
   wrapper: *
 
   state = {
@@ -66,8 +63,7 @@ class Editor extends React.Component<Props, State> {
   componentDidMount() {
     ;(document: any).addEventListener('mousedown', this.handleClickOutside)
     ;(document: any).addEventListener('keydown', (e: KeyboardEvent) => {
-      const escKey = 27
-      if (e.keyCode === escKey) {
+      if (e.keyCode === 27) {
         this.props.hideEditor()
       }
     })
@@ -79,31 +75,43 @@ class Editor extends React.Component<Props, State> {
     }
   }
 
-  updateCode = (newCode: string) => {
-    this.setState({ code: newCode })
-  }
-
   changeMode = (e: SyntheticEvent<HTMLSelectElement>) => {
     this.setState({ mode: e.currentTarget.value })
+    this.editor.focus()
+  }
+
+  createGist = async () => {
+    console.log(this.state.code)
+  }
+
+  clearCode = () => {
+    this.setState({ code: '' })
+    this.editor.focus()
   }
 
   render() {
     return (
-      <Backdrop hidden={this.props.hidden}>
+      <Backdrop>
         <Wrapper innerRef={wrapper => (this.wrapper = wrapper)}>
           <TopBar
             hideEditor={this.props.hideEditor}
             changeMode={this.changeMode}
+            createGist={this.createGist}
+            clearCode={this.clearCode}
           />
           <StyledCodeMirror
-            id="codemirror"
+            autofocus
+            value={this.state.code}
             options={{
               mode: this.state.mode,
+              theme: 'material',
               lineNumbers: true
             }}
-            autoFocus
-            onChange={this.updateCode}
-            value={this.state.code}
+            onBeforeChange={(editor, data, code) => this.setState({ code })}
+            editorDidMount={editor => {
+              this.editor = editor
+              editor.focus()
+            }}
           />
         </Wrapper>
       </Backdrop>
