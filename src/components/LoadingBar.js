@@ -49,7 +49,7 @@ let OuterBar = styled.div`
   display: block;
   background: #16191b;
   overflow: hidden;
-  opacity: ${props => (props.isLoading ? 1 : 0)};
+  opacity: ${(props: Props) => (props.isLoading ? 1 : 0)};
   transition: opacity 0.7s ease-in-out;
 `
 
