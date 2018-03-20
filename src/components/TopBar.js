@@ -20,7 +20,33 @@ let Header = styled.header`
 `
 
 let Dropdown = styled.select`
-  margin-left: 25px;
+  margin: 0 25px;
+  padding: 10px 0;
+  height: 30px;
+  min-width: 125px;
+  border: none;
+  background: #16191b;
+  color: #ddd;
+  outline: none;
+`
+
+const Button = styled.button`
+  background: #16191b;
+  color: #ddd;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 25px;
+  padding: 10px 15px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: #0f1112;
+  }
 `
 
 let CloseIcon = styled.div`
@@ -47,17 +73,17 @@ function TopBar({
     <>
       <LoadingBar isLoading={isLoading} />
       <Header>
-        <Dropdown onChange={changeMode}>
-          <option value="javascript">JavaScript</option>
-          <option value="htmlmixed">HTML</option>
-          <option value="css">CSS</option>
-          <option value="sass">Sass</option>
-          <option value="python">Python</option>
-          <option value="ruby">Ruby</option>
-        </Dropdown>
         <div>
-          <button onClick={createGist}>Insert as Gist</button>
-          <button onClick={clearCode}>Clear Code</button>
+          <Dropdown onChange={changeMode}>
+            <option value="javascript">JavaScript</option>
+            <option value="htmlmixed">HTML</option>
+            <option value="css">CSS</option>
+            <option value="sass">Sass</option>
+            <option value="python">Python</option>
+            <option value="ruby">Ruby</option>
+          </Dropdown>
+          <Button onClick={clearCode}>Clear Code</Button>
+          <Button onClick={createGist}>Create Gist</Button>
         </div>
         <CloseIcon onClick={hideEditor}>
           <i className="fas fa-times-circle" />

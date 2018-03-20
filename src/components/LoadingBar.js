@@ -47,7 +47,7 @@ let OuterBar = styled.div`
   position: relative;
   height: 4px;
   display: block;
-  background: black;
+  background: #16191b;
   overflow: hidden;
   opacity: ${props => (props.isLoading ? 1 : 0)};
   transition: opacity 0.7s ease-in-out;
@@ -55,7 +55,7 @@ let OuterBar = styled.div`
 
 let InnerBar = styled.div`
   width: 50%;
-  background: white;
+  background: #ddd;
 
   &:before {
     content: '';
