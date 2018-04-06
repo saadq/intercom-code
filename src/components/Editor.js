@@ -23,7 +23,7 @@ let Backdrop = styled.div`
   margin: auto;
   position: fixed;
   left: 70px;
-  z-index: 10;
+  z-index: 9999;
   display: ${props => (props.hidden ? 'none' : 'flex')};
   flex-direction: column;
   align-items: center;
