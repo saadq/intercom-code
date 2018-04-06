@@ -3,7 +3,7 @@
 
 ![](https://i.imgur.com/XIXF8QW.gif)
 
-You can install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/idkppmfdnbebeikaplhpckbmbfbeedon/publish-accepted?authUser=2&hl=en-US), or you can build it from source.
+You can install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/intercom-code/idkppmfdnbebeikaplhpckbmbfbeedon/), or you can build it from source.
 
 ## Installation
 
