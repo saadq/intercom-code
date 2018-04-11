@@ -1,6 +1,9 @@
 # intercom-code
 > A chrome extension for integrating a code editor into Intercom.
 
+## Project Status
+GitHub recently changed Gists to require authentication in order to create a gist. This extension no longer works, and needs to be updated to accommodate these changes by GitHub.
+
 ![](https://i.imgur.com/XIXF8QW.gif)
 
 You can install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/intercom-code/idkppmfdnbebeikaplhpckbmbfbeedon/), or you can build it from source.
